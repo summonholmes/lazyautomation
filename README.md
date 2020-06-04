@@ -141,6 +141,40 @@ To bypass grub and UEFI bios, EFISTUB does wonders.  On an optimus laptop, you c
 * media.ffvpx.enabled False
 * widget.wayland-dmabuf-vaapi.enabled True
 
+## Windows Task Scheduler & Chocolatey
+I auto-update all non-Windows apps when I log in with a ps1 script.
+Task Scheduler will read it with these settings:
+1. Name + Description: Upgrade All
+2. Run whether user is logged in or not
+3. Do not store password
+4. Run with highest priveleges
+5. Triggers: At log on
+6. Actions: Start a program
+* Program/script: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+* Add Arguments: -ExecutionPolicy Bypass C:\Users\summonholmes\Scripts\update.ps1
+7. Disable AC power check
+
+## Apps installed via Chocolatey:
+* discord
+* FiraCode
+* Firefox
+* foobar2000
+* git
+* keepassxc
+* miniconda3
+* mpc-hc
+* nomacs
+* notepadplusplus
+* Office365Business
+* open-shell
+* pia
+* qbittorrent
+* retroarch
+* simplewall
+* steam
+* sumatrapdf
+* vscode
+
 ## Last Steps
 1. Add online accounts
 2. Log into Slack and Discord
