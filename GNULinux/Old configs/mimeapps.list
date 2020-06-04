@@ -1,0 +1,23 @@
+[Default Applications]
+x-scheme-handler/http=userapp-Pale Moon-W0DR8Y.desktop
+x-scheme-handler/https=userapp-Pale Moon-W0DR8Y.desktop
+x-scheme-handler/ftp=userapp-Pale Moon-W0DR8Y.desktop
+x-scheme-handler/chrome=userapp-Pale Moon-W0DR8Y.desktop
+text/html=userapp-Pale Moon-W0DR8Y.desktop
+application/x-extension-htm=userapp-Pale Moon-W0DR8Y.desktop
+application/x-extension-html=userapp-Pale Moon-W0DR8Y.desktop
+application/x-extension-shtml=userapp-Pale Moon-W0DR8Y.desktop
+application/xhtml+xml=userapp-Pale Moon-W0DR8Y.desktop
+application/x-extension-xhtml=userapp-Pale Moon-W0DR8Y.desktop
+application/x-extension-xht=userapp-Pale Moon-W0DR8Y.desktop
+application/xml=geany.desktop
+image/jpeg=gpicview.desktop
+text/plain=geany.desktop
+inode/directory=pcmanfm.desktop
+application/pdf=evince.desktop
+
+[Added Associations]
+application/xml=geany.desktop;
+image/jpeg=gpicview.desktop;
+text/plain=geany.desktop;
+application/pdf=epdfview.desktop;evince.desktop;

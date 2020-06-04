@@ -1,0 +1,14 @@
+{
+    "telemetry.enableTelemetry": false,
+    "telemetry.enableCrashReporter": false,
+    "workbench.colorTheme": "Nord",
+    "editor.fontFamily": "'Fira Code Retina', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.fontLigatures": true,
+    "python.terminal.activateEnvironment": false,
+    "python.pythonPath": "/home/summonholmes/.local/miniconda3/bin/python",
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": true,
+    "python.formatting.provider": "yapf",
+    "terminal.integrated.fontFamily": "'MesloLGS NF'",
+    "git.autofetch": true
+}

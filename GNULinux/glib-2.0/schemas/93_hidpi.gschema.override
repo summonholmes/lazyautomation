@@ -1,0 +1,17 @@
+[org.gnome.desktop.interface]
+scaling-factor=2
+text-scaling-factor=1.25
+cursor-size=32
+#gtk-theme='Nordic'
+clock-format='12h'
+#document-font-name='RobotoRegular 11'
+#font-name='RobotoRegular 11'
+#icon-theme='Nordic'
+#monospace-font-name='Fira Code weight=450 10'
+[org.gnome.desktop.peripherals.touchpad]
+speed=1
+#[org.gnome.desktop.wm.preferences]
+#titlebar-font='RobotoRegular Bold 11'
+[org.gnome.settings-daemon.plugins.xsettings]
+antialiasing='rgba'
+hinting='full'
