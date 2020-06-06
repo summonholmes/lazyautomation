@@ -59,7 +59,8 @@ Defaults        insults
 summonholmes 10x-Orange-G= NOPASSWD: /sbin/poweroff,/sbin/powertop,/sbin/reboot, /bin/dnf update -y, /bin/dnf autoremove -y
 
 ## Kernel Commandline:
-* root=UUID=bc4b99ad-8818-4d5b-9b8e-b31d7647b1e3 ro quiet plymouth.enable=0 loglevel=0 vga=current udev.log_priority=0 rd.udev.log_priority=0 rd.systemd.show_status=false systemd.show_status=false vt.global_cursor_default=0 i915.fastboot=1 rd.driver.blacklist=nouveau module_blacklist=nouveau,nvidia,nvidia_uvm,nvidia_modeset,nvidia_drm LANG=en_US.UTF-8 initrd=\EFI\efistub\initramfs.img
+Replace $UUID with UUID of the root partition
+* root=UUID=$UUID ro quiet plymouth.enable=0 loglevel=0 vga=current udev.log_priority=0 rd.udev.log_priority=0 rd.systemd.show_status=false systemd.show_status=false vt.global_cursor_default=0 i915.fastboot=1 rd.driver.blacklist=nouveau module_blacklist=nouveau,nvidia,nvidia_uvm,nvidia_modeset,nvidia_drm LANG=en_US.UTF-8 initrd=\EFI\efistub\initramfs.img
 
 ## EFIStub & Improved Boot Times
 To bypass grub and UEFI bios, EFISTUB does wonders.  On an optimus laptop, you can toggle between Intel and NVIDIA by removing blacklisted NVIDIA modules here:
@@ -200,6 +201,8 @@ Task Scheduler will read it with these settings:
 * neofetch
 * postgresql
 * youtube-dl
+
+### Add the shell script to automator to auto-update all packages
 
 ## Last Steps
 1. Add online accounts
