@@ -175,6 +175,32 @@ Task Scheduler will read it with these settings:
 * sumatrapdf
 * vscode
 
+## Apps installed via Brew Cask:
+* android-file-transfer
+* android-platform-tools
+* balenaetcher
+* discord
+* dropbox
+* firefox
+* font-fira-code
+* iina
+* keepassxc
+* keka
+* microsoft-office
+* osxfuse
+* pgadmin4
+* slack
+* visual-studio-code
+* zoomus
+
+## Apps installed via Homebrew:
+* ext4fuse
+* htop
+* imagemagick
+* neofetch
+* postgresql
+* youtube-dl
+
 ## Last Steps
 1. Add online accounts
 2. Log into Slack and Discord
