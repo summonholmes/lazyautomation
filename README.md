@@ -2,12 +2,17 @@
 These are the default programs and their configurations that I desire for Windows, MacOS, and GNU/Linux systems.
 This readme will provide my defaults, and the rest of the repo config files may be dropped to their respective locations.  There is some education on sane defaults and backup here for those interested in what I do.
 
-Sections for Windows and MacOS are in the works.
-
-## Preferred Linux Distros:
-1. Fedora
-2. Pop_OS!
-3. Debian Testing
+## Preferred Linux Distros in preferred order:
+* I use GNOME Wayland and enable Firefox HW decoding
+1. Debian
+* Pros: Homebase, best performance, secure, great dependency resolution, stable or rolling
+* Cons: Bad defaults, hard to configure especially on Optimus laptops
+2. Fedora - Best security and cutting edge, mostly just works.  Not a fan of DNF
+* Pros: Best security, cutting edge, mostly just works
+* Cons: DNF bash completion, too hardened sometimes, performance doesn't quite match Debian
+3. Pop_OS! - Just works but Wayland sucks
+* Pros: Just works for most things
+* Cons: Wayland sucks here, very non-standard configurations, annoying console messages that can't be fixed
 
 #### For GNU/Linux
 * Native package manager
