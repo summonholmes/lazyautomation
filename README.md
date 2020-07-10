@@ -180,6 +180,8 @@ Task Scheduler will read it with these settings:
 * steam
 * sumatrapdf
 * vscode
+* 7zip
+* android-sdk
 
 ## Apps installed via Brew Cask:
 * android-file-transfer
