@@ -2,17 +2,16 @@
 These are the default programs and their configurations that I desire for Windows, MacOS, and GNU/Linux systems.
 This readme will provide my defaults, and the rest of the repo config files may be dropped to their respective locations.  There is some education on sane defaults and backup here for those interested in what I do.
 
-## Preferred Linux Distros in preferred order:
-* I use GNOME Wayland and enable Firefox HW decoding
+## Linux Distros of Choice:
+2. Fedora
+* Pros: Best security, cutting edge, DNF dependency resolution, mostly just works
+* Cons: DNF bash completion, too hardened sometimes
 1. Debian
-* Pros: Homebase, best performance, secure, great dependency resolution, stable or rolling
-* Cons: Bad defaults, hard to configure especially on Optimus laptops
-2. Fedora - Best security and cutting edge, mostly just works.  Not a fan of DNF
-* Pros: Best security, cutting edge, mostly just works
-* Cons: DNF bash completion, too hardened sometimes, performance doesn't quite match Debian
-3. Pop_OS! - Just works but Wayland sucks
+* Pros: Great performance, secure, stable or rolling
+* Cons: Bad defaults and older packages
+3. Pop_OS!
 * Pros: Just works for most things
-* Cons: Wayland sucks here, very non-standard configurations, annoying console messages that can't be fixed
+* Cons: Wayland sucks here, very non-standard configurations, annoying console messages that can't be fixed even with kernel commandline, sysctl.conf, or systemd configurations 
 
 #### For GNU/Linux
 * Native package manager
@@ -63,14 +62,10 @@ When booted into the restored system:
 Defaults        insults
 summonholmes 10x-Orange-G= NOPASSWD: /sbin/poweroff,/sbin/powertop,/sbin/reboot, /bin/dnf update -y, /bin/dnf autoremove -y
 
-## Kernel Commandline:
-Replace $UUID with UUID of the root partition
-* root=UUID=$UUID ro quiet plymouth.enable=0 loglevel=0 vga=current udev.log_priority=0 rd.udev.log_priority=0 rd.systemd.show_status=false systemd.show_status=false vt.global_cursor_default=0 i915.fastboot=1 rd.driver.blacklist=nouveau module_blacklist=nouveau,nvidia,nvidia_uvm,nvidia_modeset,nvidia_drm LANG=en_US.UTF-8 initrd=\EFI\efistub\initramfs.img
-
 ## EFIStub & Improved Boot Times
 To bypass grub and UEFI bios, EFISTUB does wonders.  On an optimus laptop, you can toggle between Intel and NVIDIA by removing blacklisted NVIDIA modules here:
 ```
-# efibootmgr -c -d /dev/nvme1n1 -p 1 --label "Fedora EFI Intel" --loader '\efi\efistub\bootx64.efi' -u "root=UUID=bc4b99ad-8818-4d5b-9b8e-b31d7647b1e3 ro quiet plymouth.enable=0 loglevel=0 vga=current udev.log_priority=0 rd.udev.log_priority=0 rd.systemd.show_status=false systemd.show_status=false vt.global_cursor_default=0 i915.fastboot=1 rd.driver.blacklist=nouveau module_blacklist=nouveau,nvidia,nvidia_uvm,nvidia_modeset,nvidia_drm LANG=en_US.UTF-8 initrd=\\EFI\\efistub\\initramfs.img"
+# efibootmgr -c -d /dev/nvme0n1 -p 1 --label "Fedora EFI Intel" --loader '\efi\efistub\bootx64.efi' -u "root=UUID=8a25e69b-f3e4-49e6-ba02-32be826fdd3c ro quiet plymouth.enable=0 loglevel=0 vga=current udev.log_priority=0 rd.udev.log_priority=0 rd.systemd.show_status=false systemd.show_status=false vt.global_cursor_default=0 i915.fastboot=1 rd.driver.blacklist=nouveau module_blacklist=nouveau,nvidia,nvidia_uvm,nvidia_modeset,nvidia_drm drm_kms_helper.edid_firmware=DP-1:edid/3840x2160R.bin LANG=en_US.UTF-8 initrd=\\EFI\\efistub\\initramfs.img"
 ```
 * vmlinuz.x86_64 is copied to /boot/efi/EFI/efistub/bootx64.efi
 * initramfs is copied to /boot/efi/EFI/efistub/initramfs.img
