@@ -3,10 +3,10 @@ These are the default programs and their configurations that I desire for Window
 This readme will provide my defaults, and the rest of the repo config files may be dropped to their respective locations.  There is some education on sane defaults and backup here for those interested in what I do.
 
 ## Linux Distros of Choice:
-2. Fedora
+1. Fedora
 * Pros: Best security, cutting edge, DNF dependency resolution, mostly just works
 * Cons: DNF bash completion, too hardened sometimes
-1. Debian
+2. Debian
 * Pros: Great performance, secure, stable or rolling
 * Cons: Bad defaults and older packages
 3. Pop_OS!
