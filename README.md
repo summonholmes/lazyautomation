@@ -127,30 +127,26 @@ Task Scheduler will read it with these settings:
 ```
 
 ## Apps installed via Brew Cask:
-* android-file-transfer
-* android-platform-tools
-* balenaetcher
-* discord
-* dropbox
-* firefox
-* font-fira-code
-* iina
-* keepassxc
-* keka
-* microsoft-office
-* osxfuse
-* pgadmin4
-* slack
-* visual-studio-code
-* zoomus
+```
+$ brew cask install android-file-transfer android-platform-tools balenaetcher discord dropbox firefox font-fira-code iina keepassxc keka osxfuse pdftotext pgadmin4 slack visual-studio-code webex-meetings zoomus -y
+```
 
 ## Apps installed via Homebrew:
-* ext4fuse
-* htop
-* imagemagick
-* neofetch
-* postgresql
-* youtube-dl
+```
+$ brew install ext4fuse htop imagemagick neofetch postgresql youtube-dl -y
+```
 
 ### Add the shell script to automator to auto-update all packages
-
+* Utilities > Run Shell Script > /bin/sh
+```
+#!/bin/sh
+alias conda="/Users/shanekimble/.local/miniconda3/bin/conda"
+alias brew="/usr/local/bin/brew"
+DEST="/Users/shanekimble/.update.log"
+echo `date` > $DEST 2>&1
+sleep 60
+conda update --all -y >> $DEST 2>&1
+conda clean --all -y >> $DEST 2>&1
+brew upgrade >> $DEST 2>&1
+brew cask upgrade >> $DEST 2>&1
+```
