@@ -1,10 +1,10 @@
 # config-dump
 These are the default programs and their configurations that I desire for Windows, MacOS, and GNU/Linux systems.
-This readme will provide my defaults, and the rest of the repo config files may be dropped to their respective locations.  There is some education on sane defaults and backup here for those interested in what I do.
+This readme will provide my defaults, while the rest of the repo config files may be dropped to their respective locations.  There is some education on sane defaults and backup here for those interested.
 
 ## Linux Distros of Choice:
 1. Fedora
-* Pros: Best security, cutting edge, DNF dependency resolution, mostly just works
+* Pros: Security, cutting edge, DNF dependency resolution, mostly just works
 * Cons: DNF bash completion, too hardened sometimes
 2. Debian
 * Pros: Great performance, secure, stable or rolling
@@ -55,15 +55,13 @@ When booted into the restored system:
 * vm.swappiness=1
 * kernel.printk=0 0 0 0
 * kernel.sysrq=1
-4. /etc/tlp.conf
-* DISK_DEVICES="nvme0n1 nvme1n1 sda"
 
 ## Visudo
 Defaults        insults
-summonholmes 10x-Orange-G= NOPASSWD: /sbin/poweroff,/sbin/powertop,/sbin/reboot, /bin/dnf update -y, /bin/dnf autoremove -y
+summonholmes 10x-Orange-G= NOPASSWD: /sbin/poweroff,/sbin/powertop,/sbin/reboot,/bin/dnf update -y,/bin/dnf autoremove -y,/bin/systemctl suspend
 
 ## EFIStub & Improved Boot Times
-To bypass grub and UEFI bios, EFISTUB does wonders.  On an optimus laptop, you can toggle between Intel and NVIDIA by removing blacklisted NVIDIA modules here:
+To bypass grub and UEFI bios, use EFISTUB.  On an optimus laptop, you can toggle between Intel and NVIDIA by blacklisted NVIDIA modules here:
 ```
 # efibootmgr -c -d /dev/nvme0n1 -p 1 --label "Fedora EFI Intel" --loader '\efi\efistub\bootx64.efi' -u "root=UUID=8a25e69b-f3e4-49e6-ba02-32be826fdd3c ro quiet plymouth.enable=0 loglevel=0 vga=current udev.log_priority=0 rd.udev.log_priority=0 rd.systemd.show_status=false systemd.show_status=false vt.global_cursor_default=0 i915.fastboot=1 rd.driver.blacklist=nouveau module_blacklist=nouveau,nvidia,nvidia_uvm,nvidia_modeset,nvidia_drm drm_kms_helper.edid_firmware=DP-1:edid/3840x2160R.bin LANG=en_US.UTF-8 initrd=\\EFI\\efistub\\initramfs.img"
 ```
@@ -71,39 +69,6 @@ To bypass grub and UEFI bios, EFISTUB does wonders.  On an optimus laptop, you c
 * initramfs is copied to /boot/efi/EFI/efistub/initramfs.img
 
 ## Packages to install:
-1. Firefox
-2. Evolution/Thunderbird
-3. Slack
-4. Discord
-5. VSCode
-6. Miniconda3
-7. Dropbox
-8. KeepassXC
-9. Bleachbit
-10. dconf-editor
-11. qt5c5
-12. kvantum
-13. build-essential
-14. ufw
-15. intel-va-drive, va/vdpau info
-16. ungoogled-chromium
-17. zsh
-18. gstreamer-plugins
-19. zip/unzip/unrar/p7zip
-20. thermald
-21. tuned-utils
-22. neofetch
-23. celluloid
-24. rhythmbox
-25. inxi
-26. htop
-27. nvme-cli
-28. loginized
-29. glib2-devel
-30. gnome-tweaks
-31. Libreoffice
-32. git
-33. pigz
 
 ### Fedora Install Commands
 ```
@@ -112,23 +77,10 @@ $ sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-re
 ```
 $ sudo dnf install @development-tools @hardware-support NetworkManager-openvpn-gnome adwaita-qt5 akmod-nvidia android-tools bash-completion celluloid chrome-gnome-shell chromium-browser-privacy curl discord eog evince evolution-ews ffmpeg ffmpegthumbnailer file-roller fira-code-fonts firefox fwupd gdm gedit git glib2-devel gnome-calendar gnome-firmware gnome-font-viewer gnome-menus gnome-screenshot gnome-shell gnome-system-monitor gnome-terminal gnome-terminal-nautilus gnome-themes-extra gnome-tweaks gnome-user-share gstreamer1-libav gstreamer1-plugin-openh264 gstreamer1-plugins-bad-free gstreamer1-plugins-bad-free-extras gstreamer1-plugins-bad-freeworld gstreamer1-plugins-good-extras gstreamer1-plugins-ugly gstreamer1-vaapi gvfs-mtp htop  intel-media-driver inxi keepassxc kernel-modules-extra libreoffice-calc libreoffice-impress libreoffice-writer libva-intel-driver libva-intel-hybrid-driver libva-utils libva-vdpau-driver libvdpau-va-gl mesa-libd3d mesa-vdpau-drivers microcode_ctl nano nautilus nautilus-dropbox neofetch nvme-cli p7zip pigz qt5ct rhythmbox sqlite terminus-fonts-console thermald transmission-gtk tuned-utils unrar unzip util-linux-user vdpauinfo wget xdg-user-dirs-gtk xdg-utils xorg-x11-drv-intel xorg-x11-drv-libinput xorg-x11-drv-nvidia-cuda youtube-dl zip zsh
 ```
-
 ## Conda packages to install:
-1. Scikit-learn
-2. Colorama
-3. Termcolor
-4. Plotly
-5. Scipy
-6. Seaborn
-7. Virtualenv
-8. Openpyxl
-9. Xlrd
-10. Sqlalchemy
-11. yapf
-12. psycopg2
-13. pandas
-14. jupyter
-15. flake8
+```
+$ conda install colorama flake8 jupyter openpyxl pandas plotly psycopg2 scikit-learn scipy seaborn sqlalchemy termcolor virtualenv xlrd yapf -y && conda update --all -y && conda clean --all -y
+```
 
 ## Firefox Settings
 1. Restore previous session
@@ -143,10 +95,10 @@ $ sudo dnf install @development-tools @hardware-support NetworkManager-openvpn-g
 * Dark Reader
 * KeepassXC
 * Gnome Extensions
-* H264ify
-7. about:config (I know I can do a lot more but am lazy and it breaks stuff)
+* Enhanced-H264ify
+7. Hardware Video Decoding (about:config)
 * layers.acceleration.force-enabled True
-* gfx.webrender.all True
+* gfx.webrender.enabled True
 * media.ffvpx.enabled False
 * widget.wayland-dmabuf-vaapi.enabled True
 
@@ -215,7 +167,3 @@ Task Scheduler will read it with these settings:
 
 ### Add the shell script to automator to auto-update all packages
 
-## Last Steps
-1. Add online accounts
-2. Log into Slack and Discord
-3. Log into Youtube, Messenger, Reddit, Gitlab, and Github
