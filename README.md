@@ -45,7 +45,7 @@ When booted into the restored system:
 # fstrim -av
 ```
 
-## System tweaks:
+## System tweaks (Linux):
 1. /etc/systemd/systemd/system.conf
 * DefaultTimeoutStartSec=10s
 * DefaultTimeoutStopSec=10s
@@ -56,6 +56,12 @@ When booted into the restored system:
 * kernel.printk=0 0 0 0
 * kernel.sysrq=1
 
+## System tweaks (Windows):
+1. gpedit
+* Allow Telemetry - Security
+2. regedit
+* HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\TimeZoneInformation - RealTimeIsUniversal - QWORD - 1
+
 ## Visudo
 Defaults        insults
 summonholmes 10x-Orange-G= NOPASSWD: /sbin/poweroff,/sbin/powertop,/sbin/reboot,/bin/dnf update -y,/bin/dnf autoremove -y,/bin/systemctl suspend
@@ -63,7 +69,7 @@ summonholmes 10x-Orange-G= NOPASSWD: /sbin/poweroff,/sbin/powertop,/sbin/reboot,
 ## EFIStub & Improved Boot Times
 To bypass grub and UEFI bios, use EFISTUB.  On an optimus laptop, you can toggle between Intel and NVIDIA by blacklisted NVIDIA modules here:
 ```
-# efibootmgr -c -d /dev/nvme0n1 -p 1 --label "Fedora EFI Intel" --loader '\efi\efistub\bootx64.efi' -u "root=UUID=8a25e69b-f3e4-49e6-ba02-32be826fdd3c ro quiet plymouth.enable=0 loglevel=0 vga=current udev.log_priority=0 rd.udev.log_priority=0 rd.systemd.show_status=false systemd.show_status=false vt.global_cursor_default=0 i915.fastboot=1 rd.driver.blacklist=nouveau module_blacklist=nouveau,nvidia,nvidia_uvm,nvidia_modeset,nvidia_drm drm_kms_helper.edid_firmware=DP-1:edid/3840x2160R.bin LANG=en_US.UTF-8 initrd=\\EFI\\efistub\\initramfs.img"
+# efibootmgr -c -d /dev/nvme0n1 -p 1 --label "Fedora EFI Intel" --loader '\efi\efistub\bootx64.efi' -u "root=UUID=8a25e69b-f3e4-49e6-ba02-32be826fdd3c ro quiet plymouth.enable=0 loglevel=0 vga=current udev.log_priority=0 rd.udev.log_priority=0 rd.systemd.show_status=false systemd.show_status=false vt.global_cursor_default=0 i915.fastboot=1 rd.driver.blacklist=nouveau module_blacklist=nouveau,nvidia,nvidia_uvm,nvidia_modeset,nvidia_drm LANG=en_US.UTF-8 initrd=\\EFI\\efistub\\initramfs.img"
 ```
 * vmlinuz.x86_64 is copied to /boot/efi/EFI/efistub/bootx64.efi
 * initramfs is copied to /boot/efi/EFI/efistub/initramfs.img
@@ -72,10 +78,10 @@ To bypass grub and UEFI bios, use EFISTUB.  On an optimus laptop, you can toggle
 
 ### Fedora Install Commands
 ```
-$ sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+$ sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
 ```
 ```
-$ sudo dnf install @development-tools @hardware-support NetworkManager-openvpn-gnome adwaita-qt5 akmod-nvidia android-tools bash-completion celluloid chrome-gnome-shell chromium-browser-privacy curl discord eog evince evolution-ews ffmpeg ffmpegthumbnailer file-roller fira-code-fonts firefox fwupd gdm gedit git glib2-devel gnome-calendar gnome-firmware gnome-font-viewer gnome-menus gnome-screenshot gnome-shell gnome-system-monitor gnome-terminal gnome-terminal-nautilus gnome-themes-extra gnome-tweaks gnome-user-share gstreamer1-libav gstreamer1-plugin-openh264 gstreamer1-plugins-bad-free gstreamer1-plugins-bad-free-extras gstreamer1-plugins-bad-freeworld gstreamer1-plugins-good-extras gstreamer1-plugins-ugly gstreamer1-vaapi gvfs-mtp htop  intel-media-driver inxi keepassxc kernel-modules-extra libreoffice-calc libreoffice-impress libreoffice-writer libva-intel-driver libva-intel-hybrid-driver libva-utils libva-vdpau-driver libvdpau-va-gl mesa-libd3d mesa-vdpau-drivers microcode_ctl nano nautilus nautilus-dropbox neofetch nvme-cli p7zip pigz qt5ct rhythmbox sqlite terminus-fonts-console thermald transmission-gtk tuned-utils unrar unzip util-linux-user vdpauinfo wget xdg-user-dirs-gtk xdg-utils xorg-x11-drv-intel xorg-x11-drv-libinput xorg-x11-drv-nvidia-cuda youtube-dl zip zsh
+$ sudo dnf install @development-tools @hardware-support NetworkManager-openvpn-gnome adwaita-qt5 akmod-nvidia android-tools bash-completion celluloid chrome-gnome-shell chromium-browser-privacy curl discord eog evince evolution-ews ffmpeg ffmpegthumbnailer file-roller fira-code-fonts firefox fwupd gdm gedit git glib2-devel gnome-calendar gnome-firmware gnome-font-viewer gnome-menus gnome-screenshot gnome-shell gnome-system-monitor gnome-terminal gnome-terminal-nautilus gnome-themes-extra gnome-tweaks gnome-user-share gstreamer1-libav gstreamer1-plugin-openh264 gstreamer1-plugins-bad-free gstreamer1-plugins-bad-free-extras gstreamer1-plugins-bad-freeworld gstreamer1-plugins-good-extras gstreamer1-plugins-ugly gstreamer1-vaapi gvfs-mtp htop  intel-media-driver inxi keepassxc kernel-modules-extra libreoffice-calc libreoffice-impress libreoffice-writer libva-intel-driver libva-intel-hybrid-driver libva-utils libva-vdpau-driver libvdpau-va-gl mesa-libd3d mesa-vdpau-drivers microcode_ctl nano nautilus nautilus-dropbox neofetch nvme-cli p7zip pigz qt5ct rhythmbox sqlite terminus-fonts-console thermald transmission-gtk tuned-utils unrar unzip util-linux-user vdpauinfo wget xdg-user-dirs-gtk xdg-utils xorg-x11-drv-intel xorg-x11-drv-libinput xorg-x11-drv-nvidia-cuda youtube-dl zip zsh -y
 ```
 ## Conda packages to install:
 ```
@@ -109,35 +115,16 @@ Task Scheduler will read it with these settings:
 2. Run whether user is logged in or not
 3. Do not store password
 4. Run with highest priveleges
-5. Triggers: At log on
+5. Triggers: At log on - Specific User - Enabled
 6. Actions: Start a program
 * Program/script: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
 * Add Arguments: -ExecutionPolicy Bypass C:\Users\summonholmes\Scripts\update.ps1
 7. Disable AC power check
 
 ## Apps installed via Chocolatey:
-* discord
-* FiraCode
-* Firefox
-* foobar2000
-* git
-* keepassxc
-* miniconda3
-* mpc-hc
-* nomacs
-* notepadplusplus
-* Office365Business
-* open-shell
-* pia
-* qbittorrent
-* retroarch
-* simplewall
-* steam
-* sumatrapdf
-* vscode
-* 7zip
-* adb
-* cmder
+```
+PS > choco install 7zip adb Cmder discord epicgameslauncher ffmpeg FiraCode Firefox foobar2000 git keepassxc miniconda3 mpc-hc nomacs notepadplusplus office365business open-shell pia qbittorrent retroarch simplewall steam sumatrapdf ungoogled-chromium vscode youtube-dl -y
+```
 
 ## Apps installed via Brew Cask:
 * android-file-transfer
