@@ -138,15 +138,4 @@ $ brew install ext4fuse htop imagemagick neofetch postgresql youtube-dl -y
 
 ### Add the shell script to automator to auto-update all packages
 * Utilities > Run Shell Script > /bin/sh
-```
-#!/bin/sh
-alias conda="/Users/shanekimble/.local/miniconda3/bin/conda"
-alias brew="/usr/local/bin/brew"
-DEST="/Users/shanekimble/.update.log"
-echo `date` > $DEST 2>&1
-sleep 60
-conda update --all -y >> $DEST 2>&1
-conda clean --all -y >> $DEST 2>&1
-brew upgrade >> $DEST 2>&1
-brew cask upgrade >> $DEST 2>&1
-```
+- Add contents of update_all.sh in the MacOS folder
