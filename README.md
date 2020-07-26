@@ -4,8 +4,8 @@ This readme will provide my defaults, while the rest of the repo config files ma
 
 ## Linux Distros of Choice:
 1. Fedora
-* Pros: Security, cutting edge, DNF dependency resolution, mostly just works
-* Cons: DNF bash completion, too hardened sometimes
+* Pros: Security, cutting edge, DNF dependency resolution, mostly just works, sane defaults
+* Cons: DNF bash completion is horrendous and will likely never be fixed, too hardened sometimes
 2. Debian
 * Pros: Great performance, secure, stable or rolling
 * Cons: Bad defaults and older packages
