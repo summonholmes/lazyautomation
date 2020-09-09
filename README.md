@@ -85,7 +85,7 @@ $ sudo dnf install @development-tools @hardware-support NetworkManager-openvpn-g
 ```
 ## Conda packages to install:
 ```
-$ conda install colorama flake8 jupyter openpyxl pandas plotly psycopg2 scikit-learn scipy seaborn sqlalchemy termcolor virtualenv xlrd yapf -y && conda update --all -y && conda clean --all -y
+$ conda install colorama flake8 jupyter keyring openpyxl pandas plotly psycopg2 scikit-learn scipy seaborn sqlalchemy termcolor virtualenv xlrd yapf -y && conda update --all -y && conda clean --all -y
 ```
 
 ## Firefox Settings
@@ -123,7 +123,7 @@ Task Scheduler will read it with these settings:
 
 ## Apps installed via Chocolatey:
 ```
-λ choco install 7zip adb bleachbit Cmder discord dropbox epicgameslauncher ffmpeg FiraCode Firefox foobar2000 git keepassxc miniconda3 mpc-hc nomacs notepadplusplus office365business open-shell pia qbittorrent retroarch simplewall slack steam sumatrapdf ungoogled-chromium vscode youtube-dl -y
+λ choco install 7zip adb bleachbit Cmder discord dropbox epicgameslauncher ffmpeg FiraCode Firefox foobar2000 git keepassxc miniconda3 mpc-hc msvisualcplusplus2013-redist nomacs notepadplusplus office365business open-shell pia qbittorrent retroarch simplewall slack steam sumatrapdf ungoogled-chromium vscode youtube-dl -y
 ```
 
 ## Apps installed via Brew Cask:
