@@ -3,15 +3,16 @@ These are the default programs and their configurations that I desire for Window
 This readme will provide my defaults, while the rest of the repo config files may be dropped to their respective locations.  There is some education on sane defaults and backup here for those interested.
 
 ## Linux Distros of Choice:
-1. Fedora
-* Pros: Security, cutting edge, DNF dependency resolution, mostly just works, sane defaults
-* Cons: DNF bash completion is horrendous and will likely never be fixed, too hardened sometimes
-2. Debian
-* Pros: Great performance, secure, stable or rolling
-* Cons: Bad defaults and older packages
-3. Pop_OS!
-* Pros: Just works for most things
-* Cons: Wayland sucks here, very non-standard configurations, annoying console messages that can't be fixed even with kernel commandline, sysctl.conf, or systemd configurations 
+1. Pop_OS!
+* Pros: Just works, and is the only non-trivial working solution for Microsoft Windows level power management on my Gigabyte Aero 15x.  TLP and Powertop are absolutely ineffective.  Out of the box Optimus support is really nice as well
+* Cons: Wayland sucks here, very non-standard configurations, somewhat older packages, annoying console messages that can't be fixed even with kernel commandline, sysctl.conf, or systemd configurations 
+2. Fedora
+* Pros: Mostly just works and cutting edge.  Power management on my Gigabyte Aero 15x is barely okay with tuned, only working when starting the laptop while unplugged or logging out and back in.  TLP or Powertop still doesn't work well.
+* Cons: DNF bash completion is abysmal and will likely never be fixed, some surprises due to things changing.
+3. Debian
+* Pros: Great performance and stability.  No surprises, ever.  Power management with tuned actually works!
+* Cons: Worst defaults ever and older packages
+
 
 #### For GNU/Linux
 * Native package manager
