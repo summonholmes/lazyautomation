@@ -82,7 +82,7 @@ To bypass grub and UEFI bios, use EFISTUB.  On an optimus laptop, you can toggle
 $ sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
 ```
 ```
-$ sudo dnf install @development-tools @hardware-support NetworkManager-openvpn-gnome adwaita-qt5 akmod-nvidia android-tools bash-completion celluloid chrome-gnome-shell chromium-browser-privacy curl discord eog evince evolution-ews ffmpeg ffmpegthumbnailer file-roller fira-code-fonts firefox fwupd gdm gedit git glib2-devel gnome-calendar gnome-firmware gnome-font-viewer gnome-menus gnome-screenshot gnome-shell gnome-system-monitor gnome-terminal gnome-terminal-nautilus gnome-themes-extra gnome-tweaks gnome-user-share gstreamer1-libav gstreamer1-plugin-openh264 gstreamer1-plugins-bad-free gstreamer1-plugins-bad-free-extras gstreamer1-plugins-bad-freeworld gstreamer1-plugins-good-extras gstreamer1-plugins-ugly gstreamer1-vaapi gvfs-mtp htop  intel-media-driver inxi keepassxc kernel-modules-extra libreoffice-calc libreoffice-impress libreoffice-writer libva-intel-driver libva-intel-hybrid-driver libva-utils libva-vdpau-driver libvdpau-va-gl mesa-libd3d mesa-vdpau-drivers microcode_ctl nano nautilus nautilus-dropbox neofetch nvme-cli p7zip pigz qt5ct rhythmbox sqlite terminus-fonts-console thermald transmission-gtk tuned-utils unrar unzip util-linux-user vdpauinfo wget xdg-user-dirs-gtk xdg-utils xorg-x11-drv-intel xorg-x11-drv-libinput xorg-x11-drv-nvidia-cuda youtube-dl zip zsh -y
+$ sudo dnf install @development-tools @hardware-support NetworkManager-openvpn-gnome adwaita-qt5 akmod-nvidia android-tools bash-completion celluloid chrome-gnome-shell chromium-browser-privacy curl discord eog evince evolution-ews ffmpeg ffmpegthumbnailer file-roller fira-code-fonts firefox fwupd gdm gedit git glib2-devel gnome-calendar gnome-firmware gnome-font-viewer gnome-menus gnome-screenshot gnome-shell gnome-system-monitor gnome-terminal gnome-terminal-nautilus gnome-themes-extra gnome-tweaks gnome-user-share gstreamer1-libav gstreamer1-plugin-openh264 gstreamer1-plugins-bad-free gstreamer1-plugins-bad-free-extras gstreamer1-plugins-bad-freeworld gstreamer1-plugins-good-extras gstreamer1-plugins-ugly gstreamer1-vaapi gvfs-mtp htop  intel-media-driver inxi keepassxc kernel-modules-extra libreoffice-calc libreoffice-impress libreoffice-writer libva-intel-driver libva-intel-hybrid-driver libva-utils libva-vdpau-driver libvdpau-va-gl mesa-libd3d mesa-vdpau-drivers microcode_ctl nano nautilus neofetch nvme-cli p7zip pigz qt5ct rhythmbox sqlite syncthing terminus-fonts-console thermald transmission-gtk tuned-utils unrar unzip util-linux-user vdpauinfo wget xdg-user-dirs-gtk xdg-utils xorg-x11-drv-intel xorg-x11-drv-libinput xorg-x11-drv-nvidia-cuda youtube-dl zip zsh -y
 ```
 ## Conda packages to install:
 ```
@@ -124,12 +124,12 @@ Task Scheduler will read it with these settings:
 
 ## Apps installed via Chocolatey:
 ```
-λ choco install 7zip adb bleachbit Cmder discord dropbox epicgameslauncher ffmpeg FiraCode Firefox foobar2000 git keepassxc miniconda3 mpc-hc msvisualcplusplus2013-redist nomacs notepadplusplus office365business open-shell pia qbittorrent retroarch simplewall slack steam sumatrapdf ungoogled-chromium vscode youtube-dl -y
+λ choco install 7zip adb bleachbit Cmder discord epicgameslauncher ffmpeg FiraCode Firefox foobar2000 git keepassxc miniconda3 mpc-hc msvisualcplusplus2013-redist nomacs notepadplusplus office365business open-shell pia qbittorrent retroarch simplewall slack steam sumatrapdf synctrayzor ungoogled-chromium vscode youtube-dl -y
 ```
 
 ## Apps installed via Brew Cask:
 ```
-$ brew cask install android-file-transfer android-platform-tools balenaetcher discord dropbox firefox font-fira-code iina keepassxc keka osxfuse pdftotext pgadmin4 slack visual-studio-code webex-meetings zoomus -y
+$ brew cask install android-file-transfer android-platform-tools balenaetcher discord firefox font-fira-code iina keepassxc keka osxfuse pdftotext pgadmin4 slack syncthing visual-studio-code webex-meetings zoomus -y
 ```
 
 ## Apps installed via Homebrew:
