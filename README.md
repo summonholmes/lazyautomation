@@ -1,17 +1,17 @@
-# config-dump
+# lazyautomation
 These are the default programs and their configurations that I desire for Windows, MacOS, and GNU/Linux systems.
 This readme will provide my defaults, while the rest of the repo config files may be dropped to their respective locations.  There is some education on sane defaults and backup here for those interested.
 
 ## Linux Distros of Choice:
 1. Pop_OS!
-* Pros: Just works, and is the only non-trivial working solution for Microsoft Windows level power management on my Gigabyte Aero 15x.  TLP and Powertop are absolutely ineffective.  Out of the box Optimus support is really nice as well
-* Cons: Wayland sucks here, very non-standard configurations, somewhat older packages, annoying console messages that can't be fixed even with kernel commandline, sysctl.conf, or systemd configurations 
+* Pros: Just works, and is the only non-trivial working solution for Microsoft Windows level power management on my Gigabyte Aero 15x.  TLP and Powertop are absolutely ineffective.  Out of the box Optimus support is really nice as well.
+* Cons: Wayland works very poorly, very non-standard configurations that are very difficult to change, somewhat older packages, annoying console messages that can't be fixed even with kernel commandline, sysctl.conf, or systemd configurations 
 2. Fedora
-* Pros: Mostly just works and cutting edge.  Power management on my Gigabyte Aero 15x is barely okay with tuned, only working when starting the laptop while unplugged or logging out and back in.  TLP or Powertop still doesn't work well.
-* Cons: DNF bash completion is abysmal and will likely never be fixed, some surprises due to things changing.
+* Pros: Mostly just works and cutting edge.  Wayland works very well.  Power management on my Gigabyte Aero 15x is barely okay with tuned, only working when starting the laptop while unplugged or logging out and back in.  TLP or Powertop still doesn't work well.  Replacing tuned with system76-power may solve power related issues.
+* Cons: DNF bash completion is abysmal and will likely never be fixed, some surprises due to things changing.  For instace, NVME and Laptop suspend were recently broken in kernel updates.
 3. Debian
 * Pros: Great performance and stability.  No surprises, ever.  Power management with tuned actually works!
-* Cons: Worst defaults ever and older packages
+* Cons: Bad defaults for desktop or laptop, and older packages.  fstrim, tmpfs, swappiness, potential systemd timeouts, are not enabled properly.  Also with older software, bugs can still exist and may continue to exist for the lifetime of the release.
 
 
 #### For GNU/Linux
@@ -27,22 +27,22 @@ This readme will provide my defaults, while the rest of the repo config files ma
 * Bash scripting
 
 ## Preferred Backup Solution:
-Write the disk and compress (You can easily shrink 512GiB+ to around 5GiB give or take a few GiBs).  PC will get hot and CPU may throttle.  This is the best, simple, and pure UNIX way to go about backing up quickly and reliably while saving space.  It will reliably clone ANYTHING that's on a disk including MacOS and Windows.  I'd recommend trimming on an SSD and file system checking via fsck -f when completed.
-```
-# dd if=/dev/nvme1n1 bs=1M | pigz -c > /path/to/nvme1n1.img.gz
+Write the disk and compress (You can easily shrink 512GiB+ to around 5GiB give or take a few GiBs).  PC will get hot and CPU may throttle.  This is the best, simple, and pure UNIX way to go about backing up quickly and reliably while saving space.  It will reliably clone ANYTHING that's on a disk including Linux, MacOS, and Windows.  I'd recommend trimming on an SSD and file system checking via fsck -f before running, and when cloning is completed.
+```bash
+# dd if=/dev/nvme0n1 bs=1M | pigz -c > /path/to/nvme0n1.img.gz
 ```
 To restore:
-```
-# pigz -dc /path/to/nvme1n1.img.gz | dd of=/dev/nvme1n1
+```bash
+# pigz -dc /path/to/nvme0n1.img.gz | dd of=/dev/nvme0n1
 ```
 Fsck the restored partitions for sanity:
-```
-# fsck -f /dev/nvme1n1p1
-# fsck -f /dev/nvme1n1p2
-# fsck -f /dev/nvme1n1pX
+```bash
+# fsck -f /dev/nvme0n1p1
+# fsck -f /dev/nvme0n1p2
+# fsck -f /dev/nvme0n1pX
 ```
 When booted into the restored system:
-```
+```bash
 # fstrim -av
 ```
 
@@ -63,13 +63,14 @@ When booted into the restored system:
 2. regedit
 * HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\TimeZoneInformation - RealTimeIsUniversal - QWORD - 1
 
-## Visudo
+## Visudo (Linux)
 Defaults        insults
-summonholmes 10x-Orange-G= NOPASSWD: /sbin/poweroff,/sbin/powertop,/sbin/reboot,/bin/dnf update -y,/bin/dnf autoremove -y,/bin/systemctl suspend
+summonholmes 10x-Orange-G= NOPASSWD: /sbin/poweroff,/sbin/powertop,/sbin/reboot,/bin/dnf update -y,/bin/dnf autoremove -y,/bin/systemctl suspend,/bin/apt update,/bin/apt dist-upgrade -y,/bin/apt autoremove -y
 
 ## EFIStub & Improved Boot Times
-To bypass grub and UEFI bios, use EFISTUB.  On an optimus laptop, you can toggle between Intel and NVIDIA by blacklisted NVIDIA modules here:
-```
+To bypass grub and UEFI bios, use EFISTUB.  On an optimus laptop, you can toggle between Intel and NVIDIA by blacklisting NVIDIA modules, shown below:
+```bash
+# # Disable NVIDIA graphics
 # efibootmgr -c -d /dev/nvme0n1 -p 1 --label "Fedora EFI Intel" --loader '\efi\efistub\bootx64.efi' -u "root=UUID=8a25e69b-f3e4-49e6-ba02-32be826fdd3c ro quiet plymouth.enable=0 loglevel=0 vga=current udev.log_priority=0 rd.udev.log_priority=0 rd.systemd.show_status=false systemd.show_status=false vt.global_cursor_default=0 i915.fastboot=1 rd.driver.blacklist=nouveau module_blacklist=nouveau,nvidia,nvidia_uvm,nvidia_modeset,nvidia_drm LANG=en_US.UTF-8 initrd=\\EFI\\efistub\\initramfs.img"
 ```
 * vmlinuz.x86_64 is copied to /boot/efi/EFI/efistub/bootx64.efi
@@ -78,14 +79,14 @@ To bypass grub and UEFI bios, use EFISTUB.  On an optimus laptop, you can toggle
 ## Packages to install:
 
 ### Fedora Install Commands
-```
+```bash
 $ sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
 ```
-```
+```bash
 $ sudo dnf install @development-tools @hardware-support NetworkManager-openvpn-gnome adwaita-qt5 akmod-nvidia android-tools bash-completion celluloid chrome-gnome-shell chromium-browser-privacy curl discord eog evince evolution-ews ffmpeg ffmpegthumbnailer file-roller fira-code-fonts firefox fwupd gdm gedit git glib2-devel gnome-calendar gnome-firmware gnome-font-viewer gnome-menus gnome-screenshot gnome-shell gnome-system-monitor gnome-terminal gnome-terminal-nautilus gnome-themes-extra gnome-tweaks gnome-user-share gstreamer1-libav gstreamer1-plugin-openh264 gstreamer1-plugins-bad-free gstreamer1-plugins-bad-free-extras gstreamer1-plugins-bad-freeworld gstreamer1-plugins-good-extras gstreamer1-plugins-ugly gstreamer1-vaapi gvfs-mtp htop  intel-media-driver inxi keepassxc kernel-modules-extra libreoffice-calc libreoffice-impress libreoffice-writer libva-intel-driver libva-intel-hybrid-driver libva-utils libva-vdpau-driver libvdpau-va-gl mesa-libd3d mesa-vdpau-drivers microcode_ctl nano nautilus neofetch nvme-cli p7zip pigz qt5ct rhythmbox sqlite syncthing tar terminus-fonts-console thermald transmission-gtk tuned-utils unrar unzip util-linux-user vdpauinfo wget xdg-user-dirs-gtk xdg-utils xorg-x11-drv-intel xorg-x11-drv-libinput xorg-x11-drv-nvidia-cuda youtube-dl zip zsh -y
 ```
 ## Conda packages to install:
-```
+```bash
 $ conda install colorama flake8 jupyter keyring openpyxl pandas plotly psycopg2 scikit-learn scipy seaborn sqlalchemy termcolor virtualenv xlrd yapf -y && conda update --all -y && conda clean --all -y
 ```
 
