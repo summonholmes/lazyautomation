@@ -1,22 +1,21 @@
 # lazyautomation
-These are the default programs and their configurations that I desire for Windows, MacOS, and GNU/Linux systems.
-This readme will provide my defaults, while the rest of the repo config files may be dropped to their respective locations.  There is some education on sane defaults and backup here for those interested.
+These are the default programs and configurations that I desire for Windows, MacOS, and GNU/Linux systems.
+This readme will provide my defaults, while the rest of the repo config files may be dropped to their respective locations.  There is some education here on sane defaults and backup for those interested.
 
 ## Linux Distros of Choice:
 1. Pop_OS!
-* Pros: Just works, and is the only non-trivial working solution for Microsoft Windows level power management on my Gigabyte Aero 15x.  TLP and Powertop are absolutely ineffective.  Out of the box Optimus support is really nice as well.
-* Cons: Wayland works very poorly, very non-standard configurations that are very difficult to change, somewhat older packages, annoying console messages that can't be fixed even with kernel commandline, sysctl.conf, or systemd configurations 
+* Pros: As of release 20.10, it just works and has everything I need to get going right away.  system76-power is the only non-trivial working solution for Microsoft Windows level power management on my Gigabyte Aero 15x.  Out of the box Optimus support, dev tools, non-free repos, and minimal programs installed.
+* Cons: Wayland works very poorly
 2. Fedora
-* Pros: Mostly just works and cutting edge.  Wayland works very well.  Power management on my Gigabyte Aero 15x is barely okay with tuned, only working when starting the laptop while unplugged or logging out and back in.  TLP or Powertop still doesn't work well.  Replacing tuned with system76-power may solve power related issues.
-* Cons: DNF bash completion is abysmal and will likely never be fixed, some surprises due to things changing.  For instace, NVME and Laptop suspend were recently broken in kernel updates.
+* Pros: Mostly just works and cutting edge.  The COPR repos for system76-power and kernel-longterm-5.4 are crucial.  This distro is closest to what I believe Linux on the desktop should be - semi-rolling like Windows, MacOS, Android, iOS.
+* Cons: DNF bash completion has always been abysmal.  Kernel updates are unpreditable - NVME and Laptop suspend break frequently on my Gigabyte Aero 15x.  Surprisingly, I've never had any issues using NVIDIA with Fedora.
 3. Debian
-* Pros: Great performance and stability.  No surprises, ever.  Power management with tuned actually works!
-* Cons: Bad defaults for desktop or laptop, and older packages.  fstrim, tmpfs, swappiness, potential systemd timeouts, are not enabled properly.  Also with older software, bugs can still exist and may continue to exist for the lifetime of the release.
-
+* Pros: Great performance and stability.  No surprises, ever.
+* Cons: Very bad defaults for a desktop or laptop: fstrim, tmpfs, swappiness, systemd timeouts, are not enabled properly.  With older software, bugs may exist for the lifetime of the entire release - and this can't be remedied with flatpak and backports if the issue is desktop specific.
 
 #### For GNU/Linux
 * Native package manager
-* Bash scripting
+* Shell scripting
 
 #### For Windows
 * Chocolatey package manager
@@ -24,16 +23,16 @@ This readme will provide my defaults, while the rest of the repo config files ma
 
 #### For MacOS
 * Homebrew and Homebrew Cask
-* Bash scripting
+* Shell scripting
 
 ## Preferred Backup Solution:
-Write the disk and compress (You can easily shrink 512GiB+ to around 5GiB give or take a few GiBs).  PC will get hot and CPU may throttle.  This is the best, simple, and pure UNIX way to go about backing up quickly and reliably while saving space.  It will reliably clone ANYTHING that's on a disk including Linux, MacOS, and Windows.  I'd recommend trimming on an SSD and file system checking via fsck -f before running, and when cloning is completed.
+Copy the disk and compress (You can easily shrink 512GiB+ to around 5GiB give or take a few GiBs).  PC will get hot and CPU may throttle.  This is the best, simple, and most pure UNIX way to go about backing up quickly and reliably while saving space.  This will reliably clone ANYTHING that's on a disk including Linux, MacOS, and Windows.  I'd recommend trimming on an SSD and file system checking via fsck -f before copying, as well as when restoring from backup.
 ```bash
 # dd if=/dev/nvme0n1 bs=1M | pigz -c > /path/to/nvme0n1.img.gz
 ```
 To restore:
 ```bash
-# pigz -dc /path/to/nvme0n1.img.gz | dd of=/dev/nvme0n1
+# pigz -dc /path/to/nvme0n1.img.gz | dd of=/dev/nvme0n1 bs=1M
 ```
 Fsck the restored partitions for sanity:
 ```bash
@@ -65,7 +64,7 @@ When booted into the restored system:
 
 ## Visudo (Linux)
 Defaults        insults
-summonholmes 10x-Orange-G= NOPASSWD: /sbin/poweroff,/sbin/powertop,/sbin/reboot,/bin/dnf update -y,/bin/dnf autoremove -y,/bin/systemctl suspend,/bin/apt update,/bin/apt dist-upgrade -y,/bin/apt autoremove -y
+summonholmes 10x-Orange-G= NOPASSWD: /sbin/poweroff,/sbin/powertop,/sbin/reboot,/bin/apt update,/bin/apt dist-upgrade,/bin/apt autoremove,/bin/systemctl suspend,/bin/apt-get update,/bin/apt-get dist-upgrade -y,/bin/apt-get autoremove -y
 
 ## EFIStub & Improved Boot Times
 To bypass grub and UEFI bios, use EFISTUB.  On an optimus laptop, you can toggle between Intel and NVIDIA by blacklisting NVIDIA modules, shown below:
@@ -78,50 +77,36 @@ To bypass grub and UEFI bios, use EFISTUB.  On an optimus laptop, you can toggle
 
 ## Packages to install:
 
-### Fedora Install Commands
+### Pop!_OS Install Commands
 ```bash
-$ sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
+$ sudo apt remove libreoffice-* -y
+$ sudo apt remove geary totem -y
+$ sudo apt install celluloid code evolution-ews ffmpegthumbnailer fonts-firacode gir1.2-gmenu-3.0 gnome-tweaks graphicsmagick-imagemagick-compat gstreamer1.0-libav gstreamer1.0-plugins-bad gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly htop inxi neofetch p7zip python3-pip rhythmbox syncthing unrar vainfo vdpauinfo zsh -y
+$ sudo apt install ./bleachbit*
+$ sudo apt install ./protonmail-bridge*
 ```
+
+### Flatpak Install Commands
 ```bash
-$ sudo dnf install @development-tools @hardware-support NetworkManager-openvpn-gnome adwaita-qt5 akmod-nvidia android-tools bash-completion celluloid chrome-gnome-shell chromium-browser-privacy curl discord eog evince evolution-ews ffmpeg ffmpegthumbnailer file-roller fira-code-fonts firefox fwupd gdm gedit git glib2-devel gnome-calendar gnome-firmware gnome-font-viewer gnome-menus gnome-screenshot gnome-shell gnome-system-monitor gnome-terminal gnome-terminal-nautilus gnome-themes-extra gnome-tweaks gnome-user-share gstreamer1-libav gstreamer1-plugin-openh264 gstreamer1-plugins-bad-free gstreamer1-plugins-bad-free-extras gstreamer1-plugins-bad-freeworld gstreamer1-plugins-good-extras gstreamer1-plugins-ugly gstreamer1-vaapi gvfs-mtp htop  intel-media-driver inxi keepassxc kernel-modules-extra libreoffice-calc libreoffice-impress libreoffice-writer libva-intel-driver libva-intel-hybrid-driver libva-utils libva-vdpau-driver libvdpau-va-gl mesa-libd3d mesa-vdpau-drivers microcode_ctl nano nautilus neofetch nvme-cli p7zip pigz qt5ct rhythmbox sqlite syncthing tar terminus-fonts-console thermald transmission-gtk tuned-utils unrar unzip util-linux-user vdpauinfo wget xdg-user-dirs-gtk xdg-utils xorg-x11-drv-intel xorg-x11-drv-libinput xorg-x11-drv-nvidia-cuda youtube-dl zip zsh -y
+flatpak install com.discordapp.Discord org.keepassxc.KeePassXC org.libreoffice.LibreOffice com.slack.Slack com.transmissionbt.Transmission -y
 ```
+
 ## Conda packages to install:
 ```bash
 $ conda install colorama flake8 jupyter keyring openpyxl pandas plotly psycopg2 scikit-learn scipy seaborn sqlalchemy termcolor virtualenv xlrd yapf -y && conda update --all -y && conda clean --all -y
 ```
 
-## Firefox Settings
-1. Restore previous session
-2. Play DRM content
-3. Search engine to DuckDuckGo
-4. Disable Logins and Passwords
-5. Disable Data Collection
-6. Install Extensions
-* HTTPS Everywhere
-* UBlock Origin
-* Privacy Badger
-* Dark Reader
-* KeepassXC
-* Gnome Extensions
-* Enhanced-H264ify
-7. Hardware Video Decoding (about:config)
-* layers.acceleration.force-enabled True
-* gfx.webrender.enabled True
-* media.ffvpx.enabled False
-* widget.wayland-dmabuf-vaapi.enabled True
-
 ## Windows Task Scheduler & Chocolatey
-I auto-update all non-Windows apps when I log in with a ps1 script.
+Auto-update all non-Windows apps when logged in with a ps1 script.
 Task Scheduler will read it with these settings:
 1. Name + Description: Upgrade All
 2. Run whether user is logged in or not
-3. Do not store password
-4. Run with highest priveleges
-5. Triggers: At log on - Specific User - Enabled
-6. Actions: Start a program
+3. Run with highest priveleges
+4. Triggers: At log on - Specific User - Enabled
+5. Actions: Start a program
 * Program/script: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
 * Add Arguments: -ExecutionPolicy Bypass C:\Users\summonholmes\Scripts\update.ps1
-7. Disable AC power check
+6. Disable AC power check
 
 ## Apps installed via Chocolatey:
 ```
