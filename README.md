@@ -58,9 +58,22 @@ When booted into the restored system:
 
 ## System tweaks (Windows):
 1. gpedit
-* Allow Telemetry - Security
+* Administrative Templates - Windows Components - Data Collection and Preview Builds - Allow Telemetry - Security
+* Administrative Templates - Windows Components - Windows Security - Notifications - Hide All Notifications
 2. regedit
 * HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\TimeZoneInformation - RealTimeIsUniversal - QWORD - 1
+3. Control Panel - Power Options - Choose what the power buttons do - Turn off fast startup
+4. Settings
+* Search - Permissions & History - All Off
+* Privacy - All Off, except Camera and Microphone Desktop Apps
+* Windows Update - Delivery Optimization - Off
+* Apps - Uninstall bloat
+* System - Notifications & actions - Disable Notifications
+* System - About - Rename this PC
+5. Simplewall
+* Settings - Load on system startup, Start minimized, Skip UAC prompt warning
+6. File Explorer - C: - Properties
+* Disable File Indexing
 
 ## Visudo (Linux)
 Defaults        insults
