@@ -5,13 +5,13 @@ This readme will provide my defaults, while the rest of the repo config files ma
 ## Linux Distros of Choice:
 1. Pop_OS!
 * Pros: As of release 20.10, it just works and has everything I need to get going right away.  system76-power is the only non-trivial working solution for Microsoft Windows level power management on my Gigabyte Aero 15x.  Out of the box Optimus support, dev tools, non-free repos, and minimal programs installed.
-* Cons: Wayland works very poorly
+* Cons: Wayland works very poorly.  For several releases now, shutdown messages haven't been fixed.
 2. Fedora
 * Pros: Mostly just works and cutting edge.  The COPR repos for system76-power and kernel-longterm-5.4 are crucial.  This distro is closest to what I believe Linux on the desktop should be - semi-rolling like Windows, MacOS, Android, iOS.
-* Cons: DNF bash completion has always been abysmal.  Kernel updates are unpreditable - NVME and Laptop suspend break frequently on my Gigabyte Aero 15x.  Surprisingly, I've never had any issues using NVIDIA with Fedora.
+* Cons: DNF bash completion has always been abysmal.  Kernel updates are unpredictable - NVME and Laptop suspend break frequently on my Gigabyte Aero 15x.  Surprisingly, I've never had any issues using NVIDIA with Fedora.
 3. Debian
 * Pros: Great performance and stability.  No surprises, ever.
-* Cons: Very bad defaults for a desktop or laptop: fstrim, tmpfs, swappiness, systemd timeouts, are not enabled properly.  With older software, bugs may exist for the lifetime of the entire release - and this can't be remedied with flatpak and backports if the issue is desktop specific.
+* Cons: Very bad defaults for a desktop or laptop: fstrim, tmpfs, swappiness, systemd timeouts, are not enabled properly.  With older software, bugs may exist for the lifetime of the entire release - and this can't be remedied with flatpak and backports if the issue is desktop specific.  With backports, I've had issues with NVIDIA.
 
 #### For GNU/Linux
 * Native package manager
@@ -26,7 +26,7 @@ This readme will provide my defaults, while the rest of the repo config files ma
 * Shell scripting
 
 ## Preferred Backup Solution:
-Copy the disk and compress (You can easily shrink 512GiB+ to around 5GiB give or take a few GiBs).  PC will get hot and CPU may throttle.  This is the best, simple, and most pure UNIX way to go about backing up quickly and reliably while saving space.  This will reliably clone ANYTHING that's on a disk including Linux, MacOS, and Windows.  I'd recommend trimming on an SSD and file system checking via fsck -f before copying, as well as when restoring from backup.
+Copy the disk and compress (You can easily shrink 512GiB+ to around 5GiB give or take a few GiBs).  PC will get hot and CPU may throttle.  This is the most pure UNIX way to go about backing up quickly and reliably while saving space.  This will reliably clone ANYTHING that's on a disk including Linux, MacOS, and Windows.  I'd recommend trimming on an SSD and file system checking via fsck -f before copying, as well as when restoring from backup.
 ```bash
 # dd if=/dev/nvme0n1 bs=1M | pigz -c > /path/to/nvme0n1.img.gz
 ```
@@ -53,7 +53,7 @@ When booted into the restored system:
 * ForwardToWall=no
 3. /etc/sysctl.conf
 * vm.swappiness=1
-* kernel.printk=0 0 0 0
+* kernel.printk=3 4 1 3
 * kernel.sysrq=1
 
 ## System tweaks (Windows):
@@ -77,7 +77,7 @@ When booted into the restored system:
 
 ## Visudo (Linux)
 Defaults        insults
-summonholmes 10x-Orange-G= NOPASSWD: /sbin/poweroff,/sbin/powertop,/sbin/reboot,/bin/apt update,/bin/apt dist-upgrade,/bin/apt autoremove,/bin/systemctl suspend,/bin/apt-get update,/bin/apt-get dist-upgrade -y,/bin/apt-get autoremove -y
+summonholmes 10x-Orange-G= NOPASSWD: /sbin/poweroff,/sbin/powertop,/sbin/reboot,/bin/apt update,/bin/apt dist-upgrade,/bin/apt autoremove,/bin/systemctl suspend,/bin/apt-get update,/bin/apt-get dist-upgrade -y,/bin/apt-get autoremove -y,/bin/dnf update -y,/bin/dnf autoremove
 
 ## EFIStub & Improved Boot Times
 To bypass grub and UEFI bios, use EFISTUB.  On an optimus laptop, you can toggle between Intel and NVIDIA by blacklisting NVIDIA modules, shown below:
@@ -99,14 +99,24 @@ $ sudo apt install ./bleachbit*
 $ sudo apt install ./protonmail-bridge*
 ```
 
-### Flatpak Install Commands
+
+### Fedora Install Commands
+```bash
+$ sudo dnf install kernel-longterm kernel-longterm-modules-extra kernel-longterm-devel -y
+$ # Reboot, then continue running commands below
+$ sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+$ sudo dnf install libva-utils libva-intel-driver akmod-nvidia kernel-longterm-devel xorg-x11-drv-nvidia-cuda powertop @development-tools vdpauinfo system76-power inxi neofetch celluloid zsh gnome-tweaks ffmpegthumbnailer gstreamer1-libav gstreamer1-plugins-good-extras gstreamer1-plugins-bad-freeworld gstreamer1-plugins-ugly evolution-ews keepassxc qt5ct syncthing util-linux-user code slack bleachbit discord protonmail-bridge unrar zip unzip p7zip htop fira-code-fonts glib2-devel -y
+$ sudo dnf remove totem -y
+```
+
+### Flatpak Install Commands (Pop_OS! only)
 ```bash
 flatpak install com.discordapp.Discord org.keepassxc.KeePassXC org.libreoffice.LibreOffice com.slack.Slack com.transmissionbt.Transmission -y
 ```
 
 ## Conda packages to install:
 ```bash
-$ conda install colorama flake8 jupyter keyring openpyxl pandas plotly psycopg2 scikit-learn scipy seaborn sqlalchemy termcolor virtualenv xlrd yapf -y && conda update --all -y && conda clean --all -y
+$ conda install -c conda-forge schedule -y && conda install colorama flake8 jupyter keyring openpyxl pandas plotly psycopg2 scikit-learn scipy seaborn sqlalchemy termcolor virtualenv xlrd yapf -y && conda update --all -y && conda clean --all -y
 ```
 
 ## Windows Task Scheduler & Chocolatey
