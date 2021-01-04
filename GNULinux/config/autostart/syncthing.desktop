@@ -1,0 +1,4 @@
+[Desktop Entry]
+Name=Syncthing
+Exec=syncthing --no-browser
+Type=Application

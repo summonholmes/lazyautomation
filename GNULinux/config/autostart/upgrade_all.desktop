@@ -1,8 +1,4 @@
 [Desktop Entry]
-Name=UpgradeAll
-GenericName=A descriptive name
-Comment=Some description about your script
+Name=Upgrade All
 Exec=/home/summonholmes/.local/bin/upgrade_all.sh
-Terminal=false
 Type=Application
-X-GNOME-Autostart-enabled=true

@@ -9,4 +9,3 @@ sleep 60
 conda update --all -y >> $DEST 2>&1
 conda clean --all -y >> $DEST 2>&1
 sudo dnf update -y >> $DEST 2>&1
-sudo dnf autoremove -y >> $DEST 2>&1

@@ -1,58 +1,52 @@
 // Place your key bindings in this file to override the defaultsauto[]
 [
     {
-        "key": "ctrl+shift+f",
+        "key": "shift+cmd+f",
         "command": "editor.action.formatDocument",
-        "when": "editorHasDocumentFormattingProvider && editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly"
+        "when": "editorHasDocumentFormattingProvider && editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
     },
     {
-        "key": "ctrl+shift+i",
+        "key": "shift+alt+f",
         "command": "-editor.action.formatDocument",
-        "when": "editorHasDocumentFormattingProvider && editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly"
+        "when": "editorHasDocumentFormattingProvider && editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
     },
     {
-        "key": "ctrl+enter",
-        "command": "-python.datascience.runcurrentcell",
-        "when": "editorTextFocus && python.datascience.featureenabled && python.datascience.hascodecells && !editorHasSelection"
+        "key": "shift+cmd+backspace",
+        "command": "notebook.clearAllCellsOutputs"
+    },
+    {
+        "key": "alt+delete",
+        "command": "-notebook.cell.clearOutputs",
+        "when": "notebookCellHasOutputs && notebookEditorFocused && !inputFocus"
+    },
+    {
+        "key": "shift+cmd+backspace",
+        "command": "notebook.cell.clearOutputs"
+    },
+    {
+        "key": "shift+cmd+backspace",
+        "command": "jupyter.removeallcells"
+    },
+    {
+        "key": "shift+cmd+m",
+        "command": "jupyter.importnotebook"
+    },
+    {
+        "key": "shift+cmd+r",
+        "command": "jupyter.restartkernel"
+    },
+    {
+        "key": "shift+cmd+i",
+        "command": "jupyter.interruptkernel"
     },
     {
         "key": "shift+enter",
-        "command": "-python.datascience.runcurrentcelladvance",
-        "when": "editorTextFocus && python.datascience.featureenabled && python.datascience.hascodecells && !editorHasSelection"
-    },
-    {
-        "key": "shift+enter",
-        "command": "-python.datascience.execSelectionInteractive",
-        "when": "editorTextFocus && python.datascience.featureenabled && python.datascience.ownsSelection && !findInputFocussed && !replaceInputFocussed && editorLangId == 'python'"
+        "command": "-jupyter.execSelectionInteractive",
+        "when": "editorTextFocus && jupyter.ownsSelection && !findInputFocussed && !notebookEditorFocused && !replaceInputFocussed && editorLangId == 'python'"
     },
     {
         "key": "shift+enter",
         "command": "-python.execSelectionInTerminal",
-        "when": "editorTextFocus && !findInputFocussed && !python.datascience.ownsSelection && !replaceInputFocussed && editorLangId == 'python'"
-    },
-    {
-        "key": "alt+enter",
-        "command": "-python.datascience.runcurrentcellandaddbelow",
-        "when": "editorTextFocus && python.datascience.featureenabled && python.datascience.hascodecells && !editorHasSelection"
-    },
-    {
-        "key": "shift+enter",
-        "command": "python.datascience.runcurrentcelladvance"
-    },
-    {
-        "key": "ctrl+shift+backspace",
-        "command": "python.datascience.removeallcells"
-    },
-    {
-        "key": "ctrl+shift+r",
-        "command": "python.datascience.restartkernel"
-    },
-    {
-        "key": "ctrl+shift+m",
-        "command": "python.datascience.importnotebook"
-    },
-    {
-        "key": "ctrl+shift+i",
-        "command": "python.datascience.interruptkernel"
+        "when": "editorTextFocus && !findInputFocussed && !jupyter.ownsSelection && !replaceInputFocussed && editorLangId == 'python'"
     }
 ]
