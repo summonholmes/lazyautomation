@@ -133,7 +133,7 @@ Task Scheduler will read it with these settings:
 
 ## Apps installed via Chocolatey:
 ```
-λ choco install 7zip adb bleachbit choco-cleaner discord epicgameslauncher etcher ffmpeg FiraCode Firefox foobar2000 git gpg4win-light guitar-pro keepassxc microsoft-windows-terminal miniconda3 mpc-hc msvisualcplusplus2013-redist nano nomacs notepadplusplus nvidia-display-driver office365business protonmailbridge qbittorrent retroarch rufus simplewall slack steam sumatrapdf synctrayzor ungoogled-chromium unxUtils vim vscode youtube-dl -y
+λ choco install 7zip adb bleachbit choco-cleaner discord epicgameslauncher etcher ffmpeg FiraCode Firefox foobar2000 git gpg4win-light guitar-pro keepassxc k-litecodecpackfull microsoft-windows-terminal miniconda3 mpc-hc msvisualcplusplus2013-redist nano nomacs notepadplusplus nvidia-display-driver office365business protonmailbridge qbittorrent retroarch rufus simplewall slack steam sumatrapdf synctrayzor ungoogled-chromium unxUtils vim vscode wsl-debiangnulinux youtube-dl -y
 ```
 
 ## Apps installed via Brew Cask:
