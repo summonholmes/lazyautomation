@@ -3,15 +3,15 @@ These are the default programs and configurations that I desire for Windows, Mac
 This readme will provide my defaults, while the rest of the repo config files may be dropped to their respective locations.  There is some education here on sane defaults and backup for those interested.
 
 ## Linux Distros of Choice:
-1. Pop_OS!
-* Pros: As of release 20.10, it just works and has everything I need to get going right away.  system76-power is the only non-trivial working solution for Microsoft Windows level power management on my Gigabyte Aero 15x.  Out of the box Optimus support, dev tools, non-free repos, and minimal programs installed.
-* Cons: Wayland works very poorly.  For several releases now, shutdown messages haven't been fixed.  Only GNOME properly working.  Ubuntu-specific bugs such as HDMI audio breaking due to faulty power management rules also exist.
-2. Fedora
+1. Fedora
 * Pros: Mostly just works and cutting edge.  The COPR repos for system76-power and kernel-longterm-5.4 are crucial.  This distro is closest to what I believe Linux on the desktop should be - semi-rolling like Windows, MacOS, Android, iOS.
 * Cons: DNF bash completion has always been abysmal.  Kernel updates are unpredictable - NVME and Laptop suspend break frequently on my Gigabyte Aero 15x.  Surprisingly, I've never had any issues using NVIDIA with Fedora.
+2. Pop_OS!
+* Pros: As of release 20.10, it just works and has everything I need to get going right away.  system76-power is the only non-trivial working solution for Microsoft Windows level power management on my Gigabyte Aero 15x.  Out of the box Optimus support, dev tools, non-free repos, and minimal programs installed.
+* Cons: Wayland works very poorly.  For several releases now, shutdown messages haven't been fixed.  Only GNOME properly works.  Ubuntu-specific bugs such as HDMI audio breaking due to faulty power management rules also exist.
 3. Debian
 * Pros: Great performance and stability.  No surprises, ever.
-* Cons: Very bad defaults for a desktop or laptop: fstrim, tmpfs, swappiness, systemd timeouts, are not enabled properly.  With older software, bugs may exist for the lifetime of the entire release - and this can't be remedied with flatpak and backports if the issue is desktop specific.  With backports, I've had issues with NVIDIA.
+* Cons: Very bad defaults for a desktop or laptop: fstrim, tmpfs, swappiness, systemd timeouts, are not enabled properly.  With older software, bugs may exist for the lifetime of the entire release - and this can't be remedied with flatpak or backports if the issue is desktop specific.  With backports, I've had issues with NVIDIA.
 
 #### For GNU/Linux
 * Native package manager
