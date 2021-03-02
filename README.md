@@ -5,7 +5,7 @@ This readme will provide my defaults, while the rest of the repo config files ma
 ## Linux Distros of Choice:
 1. Pop_OS!
 * Pros: As of release 20.10, it just works and has everything I need to get going right away.  system76-power is the only non-trivial working solution for Microsoft Windows level power management on my Gigabyte Aero 15x.  Out of the box Optimus support, dev tools, non-free repos, and minimal programs installed.
-* Cons: Wayland works very poorly.  For several releases now, shutdown messages haven't been fixed.
+* Cons: Wayland works very poorly.  For several releases now, shutdown messages haven't been fixed.  Only GNOME properly working.  Ubuntu-specific bugs such as HDMI audio breaking due to faulty power management rules also exist.
 2. Fedora
 * Pros: Mostly just works and cutting edge.  The COPR repos for system76-power and kernel-longterm-5.4 are crucial.  This distro is closest to what I believe Linux on the desktop should be - semi-rolling like Windows, MacOS, Android, iOS.
 * Cons: DNF bash completion has always been abysmal.  Kernel updates are unpredictable - NVME and Laptop suspend break frequently on my Gigabyte Aero 15x.  Surprisingly, I've never had any issues using NVIDIA with Fedora.
