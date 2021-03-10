@@ -116,7 +116,7 @@ flatpak install com.discordapp.Discord org.keepassxc.KeePassXC org.libreoffice.L
 
 ## Conda packages to install:
 ```bash
-$ conda install -c conda-forge schedule -y && conda install colorama flake8 jupyter keyring openpyxl pandas plotly psycopg2 scikit-learn scipy seaborn sqlalchemy termcolor virtualenv xlrd yapf -y && conda update --all -y && conda clean --all -y
+$ conda install -c conda-forge schedule -y && conda install -c plotly plotly-orca -y && conda install colorama flake8 jupyter keyring openpyxl pandas plotly psycopg2 psutil scikit-learn scipy seaborn sqlalchemy termcolor virtualenv xlrd yapf -y && conda update --all -y && conda clean --all -y
 ```
 
 ## Windows Task Scheduler & Chocolatey
