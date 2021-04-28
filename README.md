@@ -143,7 +143,7 @@ $ brew cask install android-file-transfer android-platform-tools balenaetcher di
 
 ## Apps installed via Homebrew:
 ```
-$ brew install htop imagemagick neofetch youtube-dl -y
+$ brew install ffmpeg htop imagemagick neofetch youtube-dl -y
 ```
 
 ### Add the shell script to automator to auto-update all packages
