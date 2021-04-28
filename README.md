@@ -138,12 +138,12 @@ Task Scheduler will read it with these settings:
 
 ## Apps installed via Brew Cask:
 ```
-$ brew cask install android-file-transfer android-platform-tools balenaetcher discord firefox font-fira-code iina keepassxc keka pdftotext pgadmin4 slack syncthing visual-studio-code zoomus -y
+$ brew install --cask android-file-transfer android-platform-tools balenaetcher discord dropbox eloston-chromium firefox font-fira-code guitar-pro iina keepassxc keka microsoft-office  microsoft-teams pdftotext pgadmin4 protonmail-bridge slack syncthing tunnelblick visual-studio-code zoomus
 ```
 
 ## Apps installed via Homebrew:
 ```
-$ brew install ffmpeg htop imagemagick neofetch youtube-dl -y
+$ brew install ffmpeg htop imagemagick neofetch youtube-dl
 ```
 
 ### Add the shell script to automator to auto-update all packages
