@@ -138,7 +138,7 @@ Task Scheduler will read it with these settings:
 
 ## Apps installed via Brew Cask:
 ```
-$ brew install --cask android-file-transfer android-platform-tools balenaetcher discord dropbox eloston-chromium firefox font-fira-code guitar-pro iina keepassxc keka microsoft-office microsoft-teams pdftotext pgadmin4 protonmail-bridge qlvideo slack syncthing tunnelblick visual-studio-code zoomus
+$ brew install --cask android-file-transfer android-platform-tools balenaetcher clean-me discord dropbox eloston-chromium fanny firefox flux font-fira-code guitar-pro iina keepassxc keka lulu microsoft-office microsoft-teams onyx pdftotext pgadmin4 protonmail-bridge qlvideo retroarch slack steam syncthing tunnelblick visual-studio-code zoomus
 ```
 
 ## Apps installed via Homebrew:
